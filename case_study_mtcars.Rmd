@@ -94,6 +94,9 @@ ggplot(mtcars, aes(x = cyl, y = mpg, fill = cyl)) +
 
 # Scatter plot: moc vs zużycie paliwa
 
+ggplot(mtcars, aes(x = mpg, y = cyl)) +
+  geom_point()
+
 ```
 
 
