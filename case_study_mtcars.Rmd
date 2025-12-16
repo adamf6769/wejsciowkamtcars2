@@ -23,10 +23,10 @@ data(mtcars)
 mtcars 
 
 # Wyświetl pierwsze 6 wierszy
-count(mt_cars, 6)
+count(mtcars, 6)
 
 # Sprawdź strukturę danych
-structure(mtcars)
+str(mtcars)
 
 # Ile jest wierszy w zbiorze danych?
 mtcars %>% 
@@ -73,7 +73,7 @@ mtcars %>%
 
 mtcars %>% 
   group_by(cyl) %>% 
-  summarise(srednia_moc == mean(hp))
+  summarise(srednia_moc = mean(hp))
   
 
 
