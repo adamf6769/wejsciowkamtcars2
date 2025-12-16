@@ -14,19 +14,30 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ### 1. Wczytanie i podstawowa eksploracja danych
 
 ```{r load_data}
-# Wczytaj dane mtcars (są już dostępne w bazowym R)
+library(dplyr)
+library(tidyr)
 
+
+# Wczytaj dane mtcars (są już dostępne w bazowym R)
+data(mtcars)
+mtcars 
 
 # Wyświetl pierwsze 6 wierszy
-
+count(mt_cars, 6)
 
 # Sprawdź strukturę danych
-
+structure(mtcars)
 
 # Ile jest wierszy w zbiorze danych?
+mtcars %>% 
+  group_by(mpg) %>% 
+  count(mpg)
 
 
 # Podsumowanie statystyczne
+
+summary(mtcars) 
+  
 
 ```
 
@@ -37,21 +48,37 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(dplyr)
 
 # Policz ile samochodów ma daną liczbę cylindrów
-
+mtcars %>% 
+  group_by(cyl)
 
 # Stwórz podzbiór danych - tylko samochody z silnikiem V8 (8 cylindrów)
 
+mtcars %>% 
+  filter(cyl == 8)
+
 
 # Ile jest samochodów z silnikiem V8?
-
+mtcars %>% 
+  filter(cyl == 8) %>% 
+  count(cyl == 8)
 
 # Filtrowanie  aut hp> 200 i sortowanie malejąco wg mpg
+
+mtcars %>% 
+  filter(hp > 200) %>% 
+  arrange(desc(mpg))
 
 
 # Jaka jest średnia moc samochodu dla każdej liczby cylindrów?
 
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(srednia_moc == mean(hp))
+  
+
 
 # Które samochody mają najlepsze i najgorsze zużycie paliwa?
+
 ```
 
 ### 3. Wizualizacja danych
@@ -60,6 +87,9 @@ library(dplyr)
 library(ggplot2)
 
 # Wykres zużycia paliwa w zależności od liczby cylindrów (boxplot)
+
+ggplot(mtcars, aes(x = cyl, y = mpg, fill = cyl)) +  
+  geom_boxplot() 
 
 
 # Scatter plot: moc vs zużycie paliwa
